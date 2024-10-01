@@ -1,0 +1,15 @@
+# ninja log v6
+1333	1509	1727814696119303014	HuffmanEncoding.app/Contents/MacOS/HuffmanEncoding	96b8bf969022424a
+264	1816	1727394775087163021	CMakeFiles/HuffmanEncoding.dir/main.cpp.o	c2b2d7adb4de1764
+14	34	1727814694799593610	/Users/abraham/Desktop/Academics/CS318/HuffmanEncoding/build/Qt_6_7_2_for_macOS-Debug/HuffmanEncoding_autogen/timestamp	40f580559da7e570
+14	34	1727814694799593610	HuffmanEncoding_autogen/mocs_compilation.cpp	40f580559da7e570
+264	1833	1727394775087030730	CMakeFiles/HuffmanEncoding.dir/HuffmanEncoding_autogen/mocs_compilation.cpp.o	f39a5e6c21d67d10
+34	1333	1727814694819668414	CMakeFiles/HuffmanEncoding.dir/mainwindow.cpp.o	4719714d9870342d
+14	34	1727814694799593610	/Users/abraham/Desktop/Academics/CS318/HuffmanEncoding/build/Qt_6_7_2_for_macOS-Debug/HuffmanEncoding_autogen/mocs_compilation.cpp	40f580559da7e570
+14	34	1727814694799593610	HuffmanEncoding_autogen/timestamp	40f580559da7e570
+15	44	1727815397865644055	HuffmanEncoding_autogen/timestamp	40f580559da7e570
+15	44	1727815397865644055	HuffmanEncoding_autogen/mocs_compilation.cpp	40f580559da7e570
+15	44	1727815397865644055	/Users/abraham/Desktop/Academics/CS318/HuffmanEncoding/build/Qt_6_7_2_for_macOS-Debug/HuffmanEncoding_autogen/timestamp	40f580559da7e570
+15	44	1727815397865644055	/Users/abraham/Desktop/Academics/CS318/HuffmanEncoding/build/Qt_6_7_2_for_macOS-Debug/HuffmanEncoding_autogen/mocs_compilation.cpp	40f580559da7e570
+44	1575	1727815397895217644	CMakeFiles/HuffmanEncoding.dir/mainwindow.cpp.o	4719714d9870342d
+1575	1760	1727815399425873745	HuffmanEncoding.app/Contents/MacOS/HuffmanEncoding	96b8bf969022424a

@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_HuffmanEncoding_FILE /Users/abraham/Desktop/Academics/CS318/HuffmanEncoding/build/Qt_6_7_2_for_macOS-Debug/HuffmanEncoding.app/Contents/MacOS/HuffmanEncoding)
+set(__QT_DEPLOY_TARGET_HuffmanEncoding_TYPE EXECUTABLE)
