@@ -127,18 +127,26 @@ void MainWindow::encodeButtonClicked() {
         current = huffmanRoot; //reset to root node for next loop
     }
 
-    // encoded?
-    // Key: QVector<QStrings>
-    //      Key[0] = "01";
-    //      Key[1] = "11";
-    //      ...             ---> determine encodings
-
     QString encoding = ""; //concatenated string of encodings
     for (int iPos = 0; iPos < data.length(); ++iPos) {
         encoding += charCodeEncodingStrings[(unsigned char)data[iPos]];
     }
 
-    // fill charCodeEncodingStrings
+    QByteArray byteArray;
+    int encodingLength = encoding.length();
+    for (int i = 0; i < encodingLength; i += 8) {
+        QString byteStr = encoding.mid(i, 8);  // Get 8-bit chunk
+        if (byteStr.length() < 8) {
+            // Pad the last chunk with 0s if it's not 8 bits long
+            byteStr = byteStr.leftJustified(8, '0');
+        }
+        bool ok;
+        char byte = byteStr.toInt(&ok, 2);  // Convert binary string to integer
+        if (ok) {
+            byteArray.append(byte);  // Append converted byte to the byte array
+        }
+    }
+
     QString outName = QFileDialog::getSaveFileName(this, "Save", "", "Huffman (*.huf)");
     if (outName.isEmpty()) return;
 
@@ -149,8 +157,22 @@ void MainWindow::encodeButtonClicked() {
     }
 
     QDataStream out(&outFile);
+    out << charCodeEncodingStrings;  // Save the Huffman encoding map
+    out.writeRawData(byteArray.data(), byteArray.size());  // Save the encoded binary data
 
-    out << charCodeEncodingStrings << encoding;
+    // // fill charCodeEncodingStrings
+    // QString outName = QFileDialog::getSaveFileName(this, "Save", "", "Huffman (*.huf)");
+    // if (outName.isEmpty()) return;
+
+    // QFile outFile(outName);
+    // if (!outFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+    //     QMessageBox::information(this, "Error", QString("Can't write to file \"%1\"").arg(outName));
+    //     return;
+    // }
+
+    // QDataStream out(&outFile);
+
+    // out << charCodeEncodingStrings << encoding;
 
     for (int i = 0; i < 256; ++i) {
         if (!charCodeEncodingStrings[i].isEmpty()) {
@@ -184,9 +206,18 @@ void MainWindow::decodeButtonClicked() {
     QDataStream in(&inFile);
 
     QVector<QString> charCodeEncodingStrings(256); // stores encoding for each byte
-    QString encodedData;
 
-    in >> charCodeEncodingStrings >> encodedData; //read in encoded data
+    //in >> charCodeEncodingStrings >> encodedData;
+    //read in encoded data
+    in >> charCodeEncodingStrings;
+
+    QByteArray encodedBytes;
+    encodedBytes = inFile.readAll(); //read the entire binary data
+
+    QString encodedData;
+    for (char byte : encodedBytes) {
+        encodedData += QString::number((unsigned char)byte, 2).rightJustified(8, '0'); //convert each byte to an 8-bit binary string
+    }
 
     //build a map for decoding the encoded data
     QMap<QString, unsigned char> decodingMap;
