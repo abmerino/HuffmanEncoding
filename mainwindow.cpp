@@ -160,20 +160,6 @@ void MainWindow::encodeButtonClicked() {
     out << charCodeEncodingStrings;  // Save the Huffman encoding map
     out.writeRawData(byteArray.data(), byteArray.size());  // Save the encoded binary data
 
-    // // fill charCodeEncodingStrings
-    // QString outName = QFileDialog::getSaveFileName(this, "Save", "", "Huffman (*.huf)");
-    // if (outName.isEmpty()) return;
-
-    // QFile outFile(outName);
-    // if (!outFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-    //     QMessageBox::information(this, "Error", QString("Can't write to file \"%1\"").arg(outName));
-    //     return;
-    // }
-
-    // QDataStream out(&outFile);
-
-    // out << charCodeEncodingStrings << encoding;
-
     for (int i = 0; i < 256; ++i) {
         if (!charCodeEncodingStrings[i].isEmpty()) {
             myTableWidget->setItem(i, 3, new QTableWidgetItem(charCodeEncodingStrings[i]));
@@ -207,8 +193,6 @@ void MainWindow::decodeButtonClicked() {
 
     QVector<QString> charCodeEncodingStrings(256); // stores encoding for each byte
 
-    //in >> charCodeEncodingStrings >> encodedData;
-    //read in encoded data
     in >> charCodeEncodingStrings;
 
     QByteArray encodedBytes;
